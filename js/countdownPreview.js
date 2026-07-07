@@ -1,33 +1,16 @@
 /**
- * Visual-only live countdown for capsule cards.
- * Does not affect unlock logic or storage.
+ * Real countdown for locked capsule cards.
+ * Uses the single global time engine — no duplicate timer.
  */
 
 import * as capsuleManager from './capsuleManager.js';
+import { getTimeRemaining, getCapsuleState, onTick } from './timeEngine.js';
 
-let intervalId = null;
 let activeGrid = null;
+let unsubscribe = null;
 
 function pad(value) {
   return String(value).padStart(2, '0');
-}
-
-function getTimeRemaining(unlockDate) {
-  const target = new Date(
-    unlockDate.includes('T') ? unlockDate : `${unlockDate}T23:59:59`
-  );
-  const diff = target.getTime() - Date.now();
-
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  }
-
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  };
 }
 
 function buildCountdownHTML() {
@@ -53,6 +36,10 @@ function buildCountdownHTML() {
   `;
 }
 
+function buildReadyLabelHTML() {
+  return `<div class="capsule-card__ready-label" data-ready-label aria-live="polite">Ready To Open</div>`;
+}
+
 function updateValue(el, nextValue, animate) {
   const formatted = el.dataset.unit === 'days' ? String(nextValue) : pad(nextValue);
   if (el.textContent === formatted) return;
@@ -65,53 +52,66 @@ function updateValue(el, nextValue, animate) {
   }
 }
 
+function replaceCountdownWithReady(card) {
+  const countdown = card.querySelector('[data-countdown]');
+  if (!countdown || card.querySelector('[data-ready-label]')) return;
+
+  countdown.outerHTML = buildReadyLabelHTML();
+  card.classList.add('capsule-card--pulse-once');
+}
+
 function updateCardCountdown(card, animate) {
   const id = card.dataset.id;
-  if (!id) return;
+  if (!id) return false;
 
   const capsule = capsuleManager.getCapsule(id);
-  if (!capsule) return;
+  if (!capsule) return false;
+
+  if (getCapsuleState(capsule) !== 'locked') {
+    replaceCountdownWithReady(card);
+    return false;
+  }
 
   const remaining = getTimeRemaining(capsule.unlockDate);
   const countdown = card.querySelector('[data-countdown]');
-  if (!countdown) return;
+  if (!countdown) return remaining.totalMs <= 0;
 
   updateValue(countdown.querySelector('[data-unit="days"]'), remaining.days, animate);
   updateValue(countdown.querySelector('[data-unit="hours"]'), remaining.hours, animate);
   updateValue(countdown.querySelector('[data-unit="minutes"]'), remaining.minutes, animate);
   updateValue(countdown.querySelector('[data-unit="seconds"]'), remaining.seconds, animate);
+
+  if (remaining.totalMs <= 0) {
+    replaceCountdownWithReady(card);
+    return true;
+  }
+
+  return false;
 }
 
-function tickAll(animate = true) {
+function tickCountdowns(animate = true) {
   if (!activeGrid) return;
-  activeGrid.querySelectorAll('.capsule-card[data-id]').forEach((card) => {
+
+  activeGrid.querySelectorAll('.capsule-card[data-state="locked"]').forEach((card) => {
     updateCardCountdown(card, animate);
   });
 }
 
-function stopInterval() {
-  if (intervalId) {
-    clearInterval(intervalId);
-    intervalId = null;
-  }
-}
-
-function startInterval() {
-  stopInterval();
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  intervalId = setInterval(() => tickAll(!prefersReducedMotion), 1000);
-}
-
 /**
- * Inject countdown UI and start live updates after cards render.
+ * Inject countdown UI and subscribe to the global time engine.
  * @param {HTMLElement} gridEl
  */
 export function syncCountdownPreviews(gridEl) {
+  if (unsubscribe) {
+    unsubscribe();
+    unsubscribe = null;
+  }
+
   activeGrid = gridEl;
-  stopInterval();
 
   gridEl.querySelectorAll('.capsule-card[data-id]').forEach((card) => {
-    if (card.querySelector('[data-countdown]')) return;
+    if (card.dataset.state !== 'locked') return;
+    if (card.querySelector('[data-countdown]') || card.querySelector('[data-ready-label]')) return;
 
     const actionBtn = card.querySelector('.capsule-card__action');
     if (!actionBtn) return;
@@ -120,16 +120,16 @@ export function syncCountdownPreviews(gridEl) {
     updateCardCountdown(card, false);
   });
 
-  if (gridEl.querySelectorAll('.capsule-card[data-id]').length > 0) {
-    startInterval();
-  }
+  unsubscribe = onTick(tickCountdowns);
 }
 
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    stopInterval();
-  } else if (activeGrid?.querySelector('.capsule-card[data-id]')) {
-    tickAll(false);
-    startInterval();
+/**
+ * Detach countdown from the time engine.
+ */
+export function detachCountdownPreviews() {
+  if (unsubscribe) {
+    unsubscribe();
+    unsubscribe = null;
   }
-});
+  activeGrid = null;
+}

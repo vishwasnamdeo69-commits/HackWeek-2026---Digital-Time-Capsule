@@ -9,6 +9,9 @@ import { validateCapsuleForm } from './validator.js';
 import { getTodayDateString, readFileAsBase64 } from './utils.js';
 import { syncCountdownPreviews } from './countdownPreview.js';
 import { initScrollAnimations } from './scrollAnimations.js';
+import { initMemoryViewer } from './memoryViewer.js';
+import { playUnlockExperience, viewOpenedCapsule } from './unlockExperience.js';
+import { getCapsuleState, startTimeEngine } from './timeEngine.js';
 
 const form = document.getElementById('capsule-form');
 const gridEl = document.getElementById('capsules-grid');
@@ -222,6 +225,16 @@ function handleGridClick(event) {
       deleteCapsuleName.textContent = capsule.title;
     }
     deleteModal.open();
+  } else if (action === 'open') {
+    const capsule = capsuleManager.getCapsule(id);
+    if (!capsule || getCapsuleState(capsule) !== 'ready') return;
+
+    const cardEl = gridEl.querySelector(`[data-id="${id}"]`);
+    playUnlockExperience(id, cardEl).then((success) => {
+      if (success) refreshUI();
+    });
+  } else if (action === 'view') {
+    viewOpenedCapsule(id);
   }
 }
 
@@ -263,7 +276,9 @@ function init() {
   document.getElementById('delete-cancel-btn').addEventListener('click', handleDeleteCancel);
 
   initScrollAnimations();
+  initMemoryViewer();
   refreshUI();
+  startTimeEngine(refreshUI);
 }
 
 export { init };

@@ -21,7 +21,9 @@ function isValidCapsule(capsule) {
     typeof c.createdAt === 'string' &&
     typeof c.theme === 'string' &&
     typeof c.isUnlocked === 'boolean' &&
-    (c.image === null || typeof c.image === 'string')
+    (c.image === null || typeof c.image === 'string') &&
+    (c.unlockedAt === undefined || c.unlockedAt === null || typeof c.unlockedAt === 'string') &&
+    (c.openedAt === undefined || c.openedAt === null || typeof c.openedAt === 'string')
   );
 }
 

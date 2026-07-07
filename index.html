@@ -452,6 +452,60 @@
     </div>
   </div>
 
+  <!-- MEMORY VIEWER -->
+  <div id="memory-viewer" class="memory-viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" aria-hidden="true" hidden>
+    <div class="memory-viewer__backdrop" aria-hidden="true"></div>
+    <div class="memory-viewer__celebration" data-viewer-celebration aria-hidden="true"></div>
+    <div class="memory-viewer__panel" role="document">
+      <header class="memory-viewer__header">
+        <p class="memory-viewer__eyebrow" data-viewer-eyebrow>Your Memory</p>
+        <button type="button" class="memory-viewer__close btn btn--ghost btn--icon" data-viewer-close aria-label="Close memory viewer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
+
+      <div class="memory-viewer__scroll">
+        <div class="memory-viewer__hero" data-viewer-hero></div>
+
+        <div class="memory-viewer__body">
+          <h2 id="viewer-title" class="memory-viewer__title" data-viewer-title></h2>
+          <p class="memory-viewer__description" data-viewer-description></p>
+
+          <dl class="memory-viewer__dates">
+            <div class="memory-viewer__date-item">
+              <dt>Created</dt>
+              <dd data-viewer-created></dd>
+            </div>
+            <div class="memory-viewer__date-item">
+              <dt>Unlocked</dt>
+              <dd data-viewer-unlocked></dd>
+            </div>
+          </dl>
+
+          <blockquote class="memory-viewer__message">
+            <p data-viewer-message></p>
+          </blockquote>
+
+          <section class="memory-viewer__timeline-section" aria-labelledby="timeline-heading">
+            <h3 id="timeline-heading" class="memory-viewer__timeline-heading">Journey</h3>
+            <ol class="memory-timeline" data-viewer-timeline></ol>
+          </section>
+        </div>
+      </div>
+
+      <footer class="memory-viewer__footer">
+        <button type="button" class="btn btn--ghost memory-viewer__sound" data-viewer-sound aria-pressed="false" aria-label="Enable unlock sound">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/></svg>
+        </button>
+        <button type="button" class="btn btn--secondary" data-viewer-share>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          Download Share Card
+        </button>
+      </footer>
+    </div>
+    <div class="sr-only" aria-live="assertive" data-viewer-announce></div>
+  </div>
+
   <script type="module" src="script.js"></script>
 </body>
 </html>

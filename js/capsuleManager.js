@@ -4,12 +4,16 @@
 
 import * as storage from './storage.js';
 import { generateId } from './utils.js';
+import { isUnlockDateReached, syncUnlockStates } from './timeEngine.js';
+
+export { syncUnlockStates };
 
 /**
  * Load all capsules from storage.
  * @returns {Array}
  */
 export function loadCapsules() {
+  syncUnlockStates();
   return storage.getAll();
 }
 
@@ -19,6 +23,8 @@ export function loadCapsules() {
  * @returns {object}
  */
 export function createCapsule(data) {
+  const reached = isUnlockDateReached(data.unlockDate);
+
   const capsule = {
     id: generateId(),
     title: data.title.trim(),
@@ -28,7 +34,9 @@ export function createCapsule(data) {
     unlockDate: data.unlockDate,
     createdAt: new Date().toISOString(),
     theme: data.theme || 'indigo',
-    isUnlocked: false,
+    isUnlocked: reached,
+    unlockedAt: reached ? new Date().toISOString() : null,
+    openedAt: null,
   };
 
   return storage.add(capsule);
@@ -62,6 +70,21 @@ export function editCapsule(id, data) {
  */
 export function deleteCapsule(id) {
   return storage.remove(id);
+}
+
+/**
+ * Mark a capsule as opened by the user (requires isUnlocked).
+ * @param {string} id
+ * @returns {object|null}
+ */
+export function openCapsule(id) {
+  const existing = storage.getAll().find((c) => c.id === id);
+  if (!existing || !existing.isUnlocked) return null;
+  if (existing.openedAt) return existing;
+
+  return storage.update(id, {
+    openedAt: new Date().toISOString(),
+  });
 }
 
 /**
