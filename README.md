@@ -37,7 +37,13 @@ digital-time-capsule/
 ├── style.css           # Design system & styles
 ├── script.js           # App entry point
 ├── js/
-│   └── modal.js        # Modal open/close controller
+│   ├── app.js          # Application orchestrator
+│   ├── capsuleManager.js
+│   ├── modal.js
+│   ├── renderer.js
+│   ├── storage.js
+│   ├── utils.js
+│   └── validator.js
 ├── assets/
 │   ├── icons/
 │   └── images/
@@ -46,20 +52,21 @@ digital-time-capsule/
 └── LICENSE
 ```
 
-## Phase 1 Features
+## Phase 2 Features
 
-- Premium responsive layout (header, hero, capsule grid)
-- Three placeholder capsule cards
-- Hidden empty state component
-- Create Capsule modal (UI only)
-- Modal open/close via button, overlay click, and ESC key
+- Create, edit, and delete capsules
+- LocalStorage persistence (`digital-time-capsules`)
+- Form validation with inline errors
+- Cover image upload with Base64 storage and preview
+- Dynamic card rendering with empty state toggle
+- Custom delete confirmation modal
 
 ## Roadmap
 
 | Phase | Focus |
 |-------|-------|
 | 1 | Foundation & UI |
-| 2 | Create, validate, save, LocalStorage |
+| 2 | CRUD, validation, LocalStorage |
 | 3 | Countdown, unlock logic, open capsule |
 | 4 | Search, sort, filter, performance |
 | 5 | Final polish, accessibility, docs |

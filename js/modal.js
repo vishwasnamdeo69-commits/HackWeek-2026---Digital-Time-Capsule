@@ -1,23 +1,28 @@
 /**
  * Modal Controller
- * Phase 1: Open/close only — no form handling.
+ * Handles open/close, focus trap, and keyboard accessibility.
  */
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /**
- * Initialize the create-capsule modal.
- * @param {string} modalId - The modal overlay element ID.
+ * Initialize a modal overlay.
+ * @param {string} modalId
+ * @param {object} [options]
+ * @param {boolean} [options.bindOpenTriggers=false] - Bind [data-modal-open] globally
+ * @param {function} [options.onOpen]
+ * @param {function} [options.onClose]
+ * @returns {{ open: function, close: function, overlay: HTMLElement }}
  */
-export function initModal(modalId) {
+export function initModal(modalId, options = {}) {
+  const { bindOpenTriggers = false, onOpen, onClose } = options;
   const overlay = document.getElementById(modalId);
-  if (!overlay) return;
+  if (!overlay) return { open: () => {}, close: () => {}, overlay: null };
 
   const modal = overlay.querySelector('.modal');
   let previouslyFocused = null;
 
-  const openTriggers = document.querySelectorAll('[data-modal-open]');
   const closeTriggers = overlay.querySelectorAll('[data-modal-close]');
 
   function getFocusableElements() {
@@ -42,11 +47,13 @@ export function initModal(modalId) {
     }
   }
 
-  function openModal() {
+  function open() {
     previouslyFocused = document.activeElement;
     overlay.hidden = false;
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    if (onOpen) onOpen();
 
     requestAnimationFrame(() => {
       const focusable = getFocusableElements();
@@ -58,12 +65,13 @@ export function initModal(modalId) {
     document.addEventListener('keydown', handleKeydown);
   }
 
-  function closeModal() {
+  function close() {
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 
     const finishClose = () => {
       overlay.hidden = true;
+      if (onClose) onClose();
     };
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -82,7 +90,7 @@ export function initModal(modalId) {
 
   function handleKeydown(event) {
     if (event.key === 'Escape') {
-      closeModal();
+      close();
       return;
     }
     trapFocus(event);
@@ -90,17 +98,21 @@ export function initModal(modalId) {
 
   function handleOverlayClick(event) {
     if (event.target === overlay) {
-      closeModal();
+      close();
     }
   }
 
-  openTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', openModal);
-  });
+  if (bindOpenTriggers) {
+    document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
+      trigger.addEventListener('click', open);
+    });
+  }
 
   closeTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', closeModal);
+    trigger.addEventListener('click', close);
   });
 
   overlay.addEventListener('click', handleOverlayClick);
+
+  return { open, close, overlay };
 }

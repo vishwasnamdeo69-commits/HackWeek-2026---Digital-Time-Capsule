@@ -78,153 +78,10 @@
           <h2 id="capsules-heading" class="capsules__title">My Time Capsules</h2>
         </div>
 
-        <div class="capsules__grid" role="list" aria-label="Time capsule cards">
+        <div id="capsules-grid" class="capsules__grid capsules__grid--hidden" role="list" aria-label="Time capsule cards" aria-hidden="true"></div>
 
-          <!-- Placeholder Card 1 -->
-          <article class="capsule-card" role="listitem" aria-label="Placeholder capsule: Summer Road Trip">
-            <div class="capsule-card__image-wrap">
-              <div class="capsule-card__image-placeholder" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="4" y="8" width="24" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="14" r="2" fill="currentColor" opacity="0.4"/>
-                  <path d="M4 22l6-6 4 4 6-8 8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="badge badge--locked">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h1C7.33 2 8 2.67 8 3.5V5" stroke="currentColor" stroke-width="1.25"/>
-                </svg>
-                Locked
-              </span>
-            </div>
-            <div class="capsule-card__body">
-              <h3 class="capsule-card__title">Summer Road Trip</h3>
-              <p class="capsule-card__meta">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <rect x="1.5" y="2.5" width="11" height="10" rx="2" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M1.5 6h11M4.5 1v2M9.5 1v2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
-                </svg>
-                Unlocks Jul 15, 2026
-              </p>
-              <div class="capsule-card__countdown" aria-label="Countdown placeholder">
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">12</span>
-                  <span class="countdown-unit__label">Days</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">4</span>
-                  <span class="countdown-unit__label">Hours</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">18</span>
-                  <span class="countdown-unit__label">Minutes</span>
-                </div>
-              </div>
-              <button type="button" class="btn btn--secondary btn--full capsule-card__action" disabled aria-disabled="true">
-                Open Capsule
-              </button>
-            </div>
-          </article>
-
-          <!-- Placeholder Card 2 -->
-          <article class="capsule-card" role="listitem" aria-label="Placeholder capsule: Letter to Future Me">
-            <div class="capsule-card__image-wrap">
-              <div class="capsule-card__image-placeholder capsule-card__image-placeholder--alt" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="4" y="8" width="24" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="14" r="2" fill="currentColor" opacity="0.4"/>
-                  <path d="M4 22l6-6 4 4 6-8 8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="badge badge--locked">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h1C7.33 2 8 2.67 8 3.5V5" stroke="currentColor" stroke-width="1.25"/>
-                </svg>
-                Locked
-              </span>
-            </div>
-            <div class="capsule-card__body">
-              <h3 class="capsule-card__title">Letter to Future Me</h3>
-              <p class="capsule-card__meta">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <rect x="1.5" y="2.5" width="11" height="10" rx="2" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M1.5 6h11M4.5 1v2M9.5 1v2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
-                </svg>
-                Unlocks Dec 31, 2026
-              </p>
-              <div class="capsule-card__countdown" aria-label="Countdown placeholder">
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">181</span>
-                  <span class="countdown-unit__label">Days</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">8</span>
-                  <span class="countdown-unit__label">Hours</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">42</span>
-                  <span class="countdown-unit__label">Minutes</span>
-                </div>
-              </div>
-              <button type="button" class="btn btn--secondary btn--full capsule-card__action" disabled aria-disabled="true">
-                Open Capsule
-              </button>
-            </div>
-          </article>
-
-          <!-- Placeholder Card 3 -->
-          <article class="capsule-card" role="listitem" aria-label="Placeholder capsule: Graduation Day">
-            <div class="capsule-card__image-wrap">
-              <div class="capsule-card__image-placeholder capsule-card__image-placeholder--warm" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="4" y="8" width="24" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="14" r="2" fill="currentColor" opacity="0.4"/>
-                  <path d="M4 22l6-6 4 4 6-8 8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="badge badge--locked">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h1C7.33 2 8 2.67 8 3.5V5" stroke="currentColor" stroke-width="1.25"/>
-                </svg>
-                Locked
-              </span>
-            </div>
-            <div class="capsule-card__body">
-              <h3 class="capsule-card__title">Graduation Day</h3>
-              <p class="capsule-card__meta">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <rect x="1.5" y="2.5" width="11" height="10" rx="2" stroke="currentColor" stroke-width="1.25"/>
-                  <path d="M1.5 6h11M4.5 1v2M9.5 1v2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
-                </svg>
-                Unlocks Jun 1, 2027
-              </p>
-              <div class="capsule-card__countdown" aria-label="Countdown placeholder">
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">333</span>
-                  <span class="countdown-unit__label">Days</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">14</span>
-                  <span class="countdown-unit__label">Hours</span>
-                </div>
-                <div class="countdown-unit">
-                  <span class="countdown-unit__value">5</span>
-                  <span class="countdown-unit__label">Minutes</span>
-                </div>
-              </div>
-              <button type="button" class="btn btn--secondary btn--full capsule-card__action" disabled aria-disabled="true">
-                Open Capsule
-              </button>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Empty State (hidden in Phase 1) -->
-        <div class="empty-state" aria-hidden="true">
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state empty-state--visible" aria-hidden="false">
           <div class="empty-state__illustration" aria-hidden="true">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
               <rect x="16" y="24" width="48" height="36" rx="6" stroke="currentColor" stroke-width="2"/>
@@ -268,7 +125,7 @@
       <header class="modal__header">
         <div>
           <h2 id="modal-title" class="modal__title">Create Time Capsule</h2>
-          <p class="modal__subtitle">Seal a memory for your future self.</p>
+          <p id="modal-subtitle" class="modal__subtitle">Seal a memory for your future self.</p>
         </div>
         <button
           type="button"
@@ -282,7 +139,7 @@
         </button>
       </header>
 
-      <form class="modal__form" novalidate>
+      <form id="capsule-form" class="modal__form" novalidate>
         <div class="form-group">
           <label class="form-label" for="capsule-title">Title</label>
           <input
@@ -291,7 +148,9 @@
             class="form-input"
             placeholder="Give your capsule a name"
             autocomplete="off"
+            aria-describedby="error-title"
           >
+          <span id="error-title" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
@@ -302,7 +161,9 @@
             class="form-input"
             placeholder="A brief summary of this memory"
             autocomplete="off"
+            aria-describedby="error-description"
           >
+          <span id="error-description" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
@@ -312,7 +173,9 @@
             class="form-textarea"
             rows="4"
             placeholder="Write your message to the future..."
+            aria-describedby="error-message"
           ></textarea>
+          <span id="error-message" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
@@ -321,17 +184,20 @@
             type="date"
             id="capsule-unlock-date"
             class="form-input"
+            aria-describedby="error-unlockDate"
           >
+          <span id="error-unlockDate" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="capsule-cover-image">Cover Image</label>
+          <label class="form-label" for="capsule-cover-image">Cover Image <span class="form-label__optional">(optional)</span></label>
           <div class="form-file">
             <input
               type="file"
               id="capsule-cover-image"
               class="form-file__input"
               accept="image/*"
+              aria-describedby="error-image"
             >
             <label for="capsule-cover-image" class="form-file__label">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -339,7 +205,11 @@
               </svg>
               <span>Choose an image</span>
             </label>
+            <div id="image-preview" class="form-file-preview">
+              <img id="image-preview-img" class="form-file-preview__img" alt="">
+            </div>
           </div>
+          <span id="error-image" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
@@ -374,9 +244,39 @@
 
         <footer class="modal__footer">
           <button type="button" class="btn btn--ghost" data-modal-close>Cancel</button>
-          <button type="button" class="btn btn--primary">Create Capsule</button>
+          <button type="submit" id="form-submit-btn" class="btn btn--primary">Create Capsule</button>
         </footer>
       </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DELETE CONFIRMATION MODAL
+       ============================================================ -->
+  <div
+    class="modal-overlay modal-overlay--confirm"
+    id="delete-confirm-modal"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="delete-modal-title"
+    aria-describedby="delete-modal-desc"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="modal modal--confirm" role="document">
+      <div class="confirm-modal__icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 7h12M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M8 7v11.5h8V7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 id="delete-modal-title" class="confirm-modal__title">Delete Capsule?</h2>
+      <p id="delete-modal-desc" class="confirm-modal__desc">
+        <span id="delete-capsule-name" class="confirm-modal__name"></span> will be permanently removed. This action cannot be undone.
+      </p>
+      <footer class="confirm-modal__footer">
+        <button type="button" id="delete-cancel-btn" class="btn btn--ghost" data-modal-close>Cancel</button>
+        <button type="button" id="delete-confirm-btn" class="btn btn--danger">Delete Capsule</button>
+      </footer>
     </div>
   </div>
 

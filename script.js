@@ -1,10 +1,7 @@
 /**
  * Digital Time Capsule — Application Entry Point
- * Phase 1: Modal initialization only.
  */
 
-import { initModal } from './js/modal.js';
+import { init } from './js/app.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  initModal('create-capsule-modal');
-});
+document.addEventListener('DOMContentLoaded', init);
