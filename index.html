@@ -7,35 +7,56 @@
   <title>Digital Time Capsule</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
+  <!-- Ambient Background -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__orb ambient__orb--lavender"></div>
+    <div class="ambient__orb ambient__orb--indigo"></div>
+    <div class="ambient__orb ambient__orb--gold"></div>
+    <div class="ambient__mesh"></div>
+    <div class="ambient__grain"></div>
+    <div class="ambient__stars"></div>
+  </div>
+
+  <!-- HEADER -->
   <header class="header" role="banner">
     <div class="header__inner container">
       <a href="#" class="header__brand" aria-label="Digital Time Capsule home">
         <span class="header__logo" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="6" width="24" height="18" rx="4" stroke="currentColor" stroke-width="1.75"/>
-            <path d="M9 6V4.5C9 3.67 9.67 3 10.5 3h7C18.33 3 19 3.67 19 4.5V6" stroke="currentColor" stroke-width="1.75"/>
-            <circle cx="14" cy="15" r="3" stroke="currentColor" stroke-width="1.75"/>
-            <path d="M14 12v-1M14 19v1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logo-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="1" stop-color="#A78BFA"/>
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="13" stroke="url(#logo-grad)" stroke-width="1.5" opacity="0.35"/>
+            <path d="M16 6c-2.5 0-4.5 2.5-4.5 5.5v2.5H10a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1.5V11.5C20.5 8.5 18.5 6 16 6z" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M12 8.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="16" cy="17" r="2.5" stroke="url(#logo-grad)" stroke-width="1.5"/>
+            <path d="M16 14.5V13M16 21v1.5" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 16h16" stroke="url(#logo-grad)" stroke-width="0.75" opacity="0.4" stroke-dasharray="2 3"/>
           </svg>
         </span>
-        <span class="header__name">Digital Time Capsule</span>
+        <span class="header__name">
+          <span class="header__name-primary">Digital Time Capsule</span>
+          <span class="header__name-tagline">Memories, sealed in time</span>
+        </span>
       </a>
-      <button
-        type="button"
-        class="btn btn--primary btn--sm header__cta"
-        data-modal-open
-        aria-haspopup="dialog"
-      >
-        <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+
+      <nav class="header__nav" aria-label="Primary">
+        <a href="#how-it-works" class="header__nav-link">How it works</a>
+        <a href="#why-capsules" class="header__nav-link">Why capsules</a>
+        <a href="#my-capsules" class="header__nav-link">My capsules</a>
+      </nav>
+
+      <button type="button" class="btn btn--primary btn--sm header__cta" data-modal-open aria-haspopup="dialog">
+        <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12h14"/>
         </svg>
         Create Capsule
       </button>
@@ -44,165 +65,347 @@
 
   <main id="main-content">
 
-    <!-- ============================================================
-         HERO SECTION
-         ============================================================ -->
+    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="container hero__inner">
-        <h1 id="hero-heading" class="hero__heading">Preserve Today. Unlock Tomorrow.</h1>
-        <p class="hero__text">
-          Seal your thoughts, messages, and moments in a digital time capsule.
-          Lock them away until the perfect moment arrives — then rediscover what mattered most.
-        </p>
-        <button
-          type="button"
-          class="btn btn--primary btn--lg hero__cta"
-          data-modal-open
-          aria-haspopup="dialog"
-        >
-          Create Your First Capsule
-          <svg class="btn__icon btn__icon--trailing" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+      <div class="container hero__layout">
+        <div class="hero__content" data-animate="fade-up">
+          <p class="hero__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            Preserve what matters most
+          </p>
+          <h1 id="hero-heading" class="hero__heading">
+            Preserve Today.<br><em>Unlock Tomorrow.</em>
+          </h1>
+          <p class="hero__text">
+            Seal letters, photos, and fleeting thoughts into beautiful digital time capsules.
+            Lock them away until the perfect moment — then rediscover what once felt unforgettable.
+          </p>
+          <div class="hero__actions">
+            <button type="button" class="btn btn--primary btn--lg hero__cta" data-modal-open aria-haspopup="dialog">
+              Create Your First Capsule
+              <svg class="btn__icon btn__icon--trailing" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works</a>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true" data-animate="fade-up" data-animate-delay="120">
+          <div class="hero__visual-glow"></div>
+
+          <div class="hero-float hero-float--back">
+            <div class="hero-float__image hero-float__image--warm"></div>
+            <div class="hero-float__overlay"></div>
+            <div class="hero-float__content">
+              <span class="hero-float__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Locked
+              </span>
+              <p class="hero-float__title">Summer Road Trip</p>
+              <p class="hero-float__date">Unlocks Jul 15, 2026</p>
+            </div>
+          </div>
+
+          <div class="hero-float hero-float--front">
+            <div class="hero-float__image hero-float__image--cool"></div>
+            <div class="hero-float__overlay"></div>
+            <div class="hero-float__content">
+              <span class="hero-float__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Locked
+              </span>
+              <p class="hero-float__title">Letter to Future Me</p>
+              <p class="hero-float__date">Unlocks Dec 31, 2026</p>
+            </div>
+          </div>
+
+          <div class="hero-glass">
+            <div class="hero-glass__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>
+              </svg>
+            </div>
+            <p class="hero-glass__label">Next unlock in</p>
+            <p class="hero-glass__time">182 days</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         CAPSULES SECTION
-         ============================================================ -->
-    <section class="capsules" aria-labelledby="capsules-heading">
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="section how-it-works" aria-labelledby="how-heading">
       <div class="container">
-        <div class="capsules__header">
-          <h2 id="capsules-heading" class="capsules__title">My Time Capsules</h2>
+        <header class="section__header" data-animate="fade-up">
+          <p class="section__eyebrow">Simple &amp; intentional</p>
+          <h2 id="how-heading" class="section__title">How It Works</h2>
+          <p class="section__subtitle">Three quiet steps to preserve a moment forever.</p>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline__step" data-animate="fade-up" data-animate-delay="0">
+            <div class="timeline__marker">
+              <span class="timeline__number">1</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>
+              </svg>
+            </div>
+            <div class="timeline__card">
+              <h3 class="timeline__title">Capture</h3>
+              <p class="timeline__text">Write a message, add a photo, and name the memory you want to keep.</p>
+              <ul class="timeline__tags">
+                <li>Image</li><li>Message</li><li>Memory</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline__connector" aria-hidden="true" data-animate="fade-up" data-animate-delay="80">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </li>
+
+          <li class="timeline__step" data-animate="fade-up" data-animate-delay="120">
+            <div class="timeline__marker">
+              <span class="timeline__number">2</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <div class="timeline__card">
+              <h3 class="timeline__title">Seal</h3>
+              <p class="timeline__text">Choose an unlock date, pick a theme, and lock your capsule until the moment arrives.</p>
+              <ul class="timeline__tags">
+                <li>Date</li><li>Theme</li><li>Lock</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline__connector" aria-hidden="true" data-animate="fade-up" data-animate-delay="160">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </li>
+
+          <li class="timeline__step" data-animate="fade-up" data-animate-delay="200">
+            <div class="timeline__marker">
+              <span class="timeline__number">3</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 8.5l-9 5-9-5M3 8.5V16l9 5 9-5V8.5"/>
+              </svg>
+            </div>
+            <div class="timeline__card">
+              <h3 class="timeline__title">Rediscover</h3>
+              <p class="timeline__text">When the day comes, open your capsule and relive what you preserved with intention.</p>
+              <ul class="timeline__tags">
+                <li>Unlock</li><li>Open</li><li>Celebrate</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CAPSULES -->
+    <section id="why-capsules" class="section why-capsules" aria-labelledby="why-heading">
+      <div class="container">
+        <header class="section__header" data-animate="fade-up">
+          <p class="section__eyebrow">Moments worth keeping</p>
+          <h2 id="why-heading" class="section__title">Why Create Time Capsules</h2>
+          <p class="section__subtitle">Some memories deserve to arrive at exactly the right time.</p>
+        </header>
+
+        <div class="feature-grid">
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="0">
+            <div class="feature-card__icon feature-card__icon--indigo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 01-4 4H8l-5 3 1.5-5.5A4 4 0 014 15V6a2 2 0 012-2h12a4 4 0 014 4z"/></svg>
+            </div>
+            <h3 class="feature-card__title">Letters to Future Self</h3>
+            <p class="feature-card__text">Write who you are today — and meet that person again years from now.</p>
+          </article>
+
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="60">
+            <div class="feature-card__icon feature-card__icon--sky">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            </div>
+            <h3 class="feature-card__title">Travel Memories</h3>
+            <p class="feature-card__text">Capture the feeling of a place before it fades into photographs alone.</p>
+          </article>
+
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="120">
+            <div class="feature-card__icon feature-card__icon--rose">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+            </div>
+            <h3 class="feature-card__title">Birthday Surprises</h3>
+            <p class="feature-card__text">Hide a message that unlocks on someone’s special day — effortlessly personal.</p>
+          </article>
+
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="180">
+            <div class="feature-card__icon feature-card__icon--amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 2 3 6 3s6-2 6-3v-5"/></svg>
+            </div>
+            <h3 class="feature-card__title">Graduation Memories</h3>
+            <p class="feature-card__text">Preserve the ambition, nerves, and hope of a chapter just beginning.</p>
+          </article>
+
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="240">
+            <div class="feature-card__icon feature-card__icon--violet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z"/></svg>
+            </div>
+            <h3 class="feature-card__title">Wedding Moments</h3>
+            <p class="feature-card__text">Seal vows, notes, or photos to reopen on anniversaries for years to come.</p>
+          </article>
+
+          <article class="feature-card" data-animate="fade-up" data-animate-delay="300">
+            <div class="feature-card__icon feature-card__icon--emerald">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            </div>
+            <h3 class="feature-card__title">Startup Milestones</h3>
+            <p class="feature-card__text">Document the day you started — and read it when you finally make it.</p>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <header class="section__header" data-animate="fade-up">
+          <p class="section__eyebrow">Stories from the future</p>
+          <h2 id="testimonials-heading" class="section__title">What People Are Preserving</h2>
+        </header>
+
+        <div class="testimonials__grid">
+          <blockquote class="testimonial-card" data-animate="fade-up" data-animate-delay="0">
+            <p class="testimonial-card__quote">“I wrote a letter to myself on my wedding day. Opening it five years later felt like time travel — in the best way.”</p>
+            <footer class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">ER</span>
+              <span>
+                <cite class="testimonial-card__name">Elena Rodriguez</cite>
+                <span class="testimonial-card__role">Sealed a vow renewal note</span>
+              </span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card" data-animate="fade-up" data-animate-delay="100">
+            <p class="testimonial-card__quote">“We locked photos from our first trip abroad. When it unlocked, we cried. It’s not just storage — it’s a feeling.”</p>
+            <footer class="testimonial-card__author">
+              <span class="testimonial-card__avatar testimonial-card__avatar--alt" aria-hidden="true">MK</span>
+              <span>
+                <cite class="testimonial-card__name">Marcus Kim</cite>
+                <span class="testimonial-card__role">Travel memory capsule</span>
+              </span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card" data-animate="fade-up" data-animate-delay="200">
+            <p class="testimonial-card__quote">“I made one for my daughter’s 18th birthday with messages from every family member. She said it was her favorite gift.”</p>
+            <footer class="testimonial-card__author">
+              <span class="testimonial-card__avatar testimonial-card__avatar--warm" aria-hidden="true">SP</span>
+              <span>
+                <cite class="testimonial-card__name">Sarah Patel</cite>
+                <span class="testimonial-card__role">Birthday surprise capsule</span>
+              </span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY CAPSULES -->
+    <section id="my-capsules" class="section capsules" aria-labelledby="capsules-heading">
+      <div class="container">
+        <header class="capsules__header" data-animate="fade-up">
+          <div>
+            <p class="section__eyebrow">Your collection</p>
+            <h2 id="capsules-heading" class="section__title">My Time Capsules</h2>
+          </div>
+          <button type="button" class="btn btn--secondary btn--sm" data-modal-open aria-haspopup="dialog">
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            New Capsule
+          </button>
+        </header>
 
         <div id="capsules-grid" class="capsules__grid capsules__grid--hidden" role="list" aria-label="Time capsule cards" aria-hidden="true"></div>
 
-        <!-- Empty State -->
-        <div id="empty-state" class="empty-state empty-state--visible" aria-hidden="false">
-          <div class="empty-state__illustration" aria-hidden="true">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <rect x="16" y="24" width="48" height="36" rx="6" stroke="currentColor" stroke-width="2"/>
-              <path d="M28 24V18a12 12 0 0124 0v6" stroke="currentColor" stroke-width="2"/>
-              <circle cx="40" cy="44" r="8" stroke="currentColor" stroke-width="2"/>
-              <path d="M40 36v-2M40 52v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <div id="empty-state" class="empty-state empty-state--visible" aria-hidden="false" data-animate="fade-up">
+          <div class="empty-state__visual" aria-hidden="true">
+            <div class="empty-state__orb"></div>
+            <svg class="empty-state__icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 8.5l-9 5-9-5M3 8.5V16l9 5 9-5V8.5"/>
+              <path d="M12 22V12M12 12L3 7M12 12l9-5"/>
             </svg>
           </div>
-          <h3 class="empty-state__heading">No Capsules Yet</h3>
+          <h3 class="empty-state__heading">Your story starts here</h3>
           <p class="empty-state__description">
-            Create your first time capsule to preserve a memory.
+            No capsules yet. Create your first memory and seal it for the future — 
+            something your tomorrow-self will thank you for.
           </p>
-          <button
-            type="button"
-            class="btn btn--primary"
-            data-modal-open
-            aria-haspopup="dialog"
-          >
-            Create Capsule
+          <button type="button" class="btn btn--primary btn--lg" data-modal-open aria-haspopup="dialog">
+            <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Create Your First Capsule
           </button>
         </div>
-
       </div>
     </section>
 
   </main>
 
-  <!-- ============================================================
-       CREATE CAPSULE MODAL
-       ============================================================ -->
-  <div
-    class="modal-overlay"
-    id="create-capsule-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-title"
-    aria-hidden="true"
-    hidden
-  >
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <p class="footer__brand">Digital Time Capsule</p>
+      <p class="footer__tagline">Preserve today. Unlock tomorrow.</p>
+      <p class="footer__copy">&copy; 2026 Digital Time Capsule. Crafted with care.</p>
+    </div>
+  </footer>
+
+  <!-- CREATE CAPSULE MODAL -->
+  <div class="modal-overlay" id="create-capsule-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" hidden>
     <div class="modal" role="document">
       <header class="modal__header">
-        <div>
+        <div class="modal__header-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 8.5l-9 5-9-5M3 8.5V16l9 5 9-5V8.5"/>
+          </svg>
+        </div>
+        <div class="modal__header-text">
           <h2 id="modal-title" class="modal__title">Create Time Capsule</h2>
           <p id="modal-subtitle" class="modal__subtitle">Seal a memory for your future self.</p>
         </div>
-        <button
-          type="button"
-          class="modal__close"
-          data-modal-close
-          aria-label="Close dialog"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-          </svg>
+        <button type="button" class="modal__close" data-modal-close aria-label="Close dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </header>
 
       <form id="capsule-form" class="modal__form" novalidate>
         <div class="form-group">
           <label class="form-label" for="capsule-title">Title</label>
-          <input
-            type="text"
-            id="capsule-title"
-            class="form-input"
-            placeholder="Give your capsule a name"
-            autocomplete="off"
-            aria-describedby="error-title"
-          >
+          <input type="text" id="capsule-title" class="form-input" placeholder="Give your capsule a name" autocomplete="off" aria-describedby="error-title">
           <span id="error-title" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="capsule-description">Short Description</label>
-          <input
-            type="text"
-            id="capsule-description"
-            class="form-input"
-            placeholder="A brief summary of this memory"
-            autocomplete="off"
-            aria-describedby="error-description"
-          >
+          <input type="text" id="capsule-description" class="form-input" placeholder="A brief summary of this memory" autocomplete="off" aria-describedby="error-description">
           <span id="error-description" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="capsule-message">Long Message</label>
-          <textarea
-            id="capsule-message"
-            class="form-textarea"
-            rows="4"
-            placeholder="Write your message to the future..."
-            aria-describedby="error-message"
-          ></textarea>
+          <textarea id="capsule-message" class="form-textarea" rows="4" placeholder="Write your message to the future..." aria-describedby="error-message"></textarea>
           <span id="error-message" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="capsule-unlock-date">Unlock Date</label>
-          <input
-            type="date"
-            id="capsule-unlock-date"
-            class="form-input"
-            aria-describedby="error-unlockDate"
-          >
+          <input type="date" id="capsule-unlock-date" class="form-input" aria-describedby="error-unlockDate">
           <span id="error-unlockDate" class="form-error" role="alert"></span>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="capsule-cover-image">Cover Image <span class="form-label__optional">(optional)</span></label>
           <div class="form-file">
-            <input
-              type="file"
-              id="capsule-cover-image"
-              class="form-file__input"
-              accept="image/*"
-              aria-describedby="error-image"
-            >
+            <input type="file" id="capsule-cover-image" class="form-file__input" accept="image/*" aria-describedby="error-image">
             <label for="capsule-cover-image" class="form-file__label">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
               <span>Choose an image</span>
             </label>
             <div id="image-preview" class="form-file-preview">
@@ -215,30 +418,12 @@
         <div class="form-group">
           <span class="form-label" id="theme-color-label">Theme Color</span>
           <div class="theme-picker" role="radiogroup" aria-labelledby="theme-color-label">
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="indigo" checked>
-              <span class="theme-picker__swatch theme-picker__swatch--indigo" aria-label="Indigo"></span>
-            </label>
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="violet">
-              <span class="theme-picker__swatch theme-picker__swatch--violet" aria-label="Violet"></span>
-            </label>
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="rose">
-              <span class="theme-picker__swatch theme-picker__swatch--rose" aria-label="Rose"></span>
-            </label>
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="amber">
-              <span class="theme-picker__swatch theme-picker__swatch--amber" aria-label="Amber"></span>
-            </label>
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="emerald">
-              <span class="theme-picker__swatch theme-picker__swatch--emerald" aria-label="Emerald"></span>
-            </label>
-            <label class="theme-picker__option">
-              <input type="radio" name="theme-color" value="sky">
-              <span class="theme-picker__swatch theme-picker__swatch--sky" aria-label="Sky"></span>
-            </label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="indigo" checked><span class="theme-picker__swatch theme-picker__swatch--indigo" aria-label="Indigo"></span></label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="violet"><span class="theme-picker__swatch theme-picker__swatch--violet" aria-label="Violet"></span></label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="rose"><span class="theme-picker__swatch theme-picker__swatch--rose" aria-label="Rose"></span></label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="amber"><span class="theme-picker__swatch theme-picker__swatch--amber" aria-label="Amber"></span></label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="emerald"><span class="theme-picker__swatch theme-picker__swatch--emerald" aria-label="Emerald"></span></label>
+            <label class="theme-picker__option"><input type="radio" name="theme-color" value="sky"><span class="theme-picker__swatch theme-picker__swatch--sky" aria-label="Sky"></span></label>
           </div>
         </div>
 
@@ -250,24 +435,11 @@
     </div>
   </div>
 
-  <!-- ============================================================
-       DELETE CONFIRMATION MODAL
-       ============================================================ -->
-  <div
-    class="modal-overlay modal-overlay--confirm"
-    id="delete-confirm-modal"
-    role="alertdialog"
-    aria-modal="true"
-    aria-labelledby="delete-modal-title"
-    aria-describedby="delete-modal-desc"
-    aria-hidden="true"
-    hidden
-  >
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div class="modal-overlay modal-overlay--confirm" id="delete-confirm-modal" role="alertdialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-describedby="delete-modal-desc" aria-hidden="true" hidden>
     <div class="modal modal--confirm" role="document">
       <div class="confirm-modal__icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M6 7h12M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M8 7v11.5h8V7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
       </div>
       <h2 id="delete-modal-title" class="confirm-modal__title">Delete Capsule?</h2>
       <p id="delete-modal-desc" class="confirm-modal__desc">

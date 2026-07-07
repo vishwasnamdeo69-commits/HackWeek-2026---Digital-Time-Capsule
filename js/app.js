@@ -7,6 +7,8 @@ import * as capsuleManager from './capsuleManager.js';
 import { renderCapsules, animateCardRemoval } from './renderer.js';
 import { validateCapsuleForm } from './validator.js';
 import { getTodayDateString, readFileAsBase64 } from './utils.js';
+import { syncCountdownPreviews } from './countdownPreview.js';
+import { initScrollAnimations } from './scrollAnimations.js';
 
 const form = document.getElementById('capsule-form');
 const gridEl = document.getElementById('capsules-grid');
@@ -147,6 +149,7 @@ function openEditModal(id) {
 function refreshUI() {
   const capsules = capsuleManager.loadCapsules();
   renderCapsules(capsules, gridEl, emptyStateEl);
+  syncCountdownPreviews(gridEl);
 }
 
 function handleFormSubmit(event) {
@@ -259,6 +262,7 @@ function init() {
   document.getElementById('delete-confirm-btn').addEventListener('click', handleDeleteConfirm);
   document.getElementById('delete-cancel-btn').addEventListener('click', handleDeleteCancel);
 
+  initScrollAnimations();
   refreshUI();
 }
 
